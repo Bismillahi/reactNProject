@@ -1,46 +1,58 @@
 import React, { Component } from 'react';
-import { Text, View, Image, Button, TextInput, StyleSheet} from 'react-native';
+import { View, StyleSheet, StatusBar} from 'react-native';
+import {AppLoading} from "expo";
+import Text from "./src/components/CustomText"
+import * as Font from "expo-font";
 
-class LoginApp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {email: "", password: ""}
+import Login from './src/pages/Login';
+
+let customFonts = {
+    'Poppins-Regular': require('./assets/font/Poppins/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('./assets/font/Poppins/Poppins-Bold.ttf'),
+    'Poppins-Black': require('./assets/font/Poppins/Poppins-Black.ttf'),
+    'Poppins-Medium': require('./assets/font/Poppins/Poppins-Medium.ttf'),
+    'Poppins-SemiBold': require('./assets/font/Poppins/Poppins-SemiBold.ttf')
+};
+
+export default class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            fontLoaded: false
+        };
     }
+
+    async componentDidMount() {
+        await Font.loadAsync(customFonts);
+        this.setState({ fontsLoaded: true });
+    }
+
     render() {
-        return (
-            <View style={styles.container}>
-                <Image
-                    source={{
-                        uri: 'https://reactnative.dev/docs/assets/p_cat2.png'
-                    }}
-                    style={{width: 200, height: 200}}
-                />
-                <Text> Selamat Datang! </Text>
-                <TextInput
-                    style={styles.inputText}
-                    defaultValue="Email"
-                />
-                <Button
-                    title="Masuk"
-                    onPress={() => Alert.alert('Im pressed')}
-                />
-            </View>
-        );
+        if (this.state.fontsLoaded) {
+            return (
+                <View style={styles.container}>
+                    <StatusBar barStyle="dark-content" />
+                    <Login/>
+                </View>
+            );
+        } else {
+            return <AppLoading />;
+        }
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
+        justifyContent: "center"
     },
     inputText: {
         height: 40,
         width: 310,
         borderColor: 'gray',
         borderWidth: 1
+    },
+    mainText: {
+        fontSize: 18
     }
 })
-
-export default LoginApp;
