@@ -1,32 +1,17 @@
 import React, { Component } from 'react';
 import { Text, View, Image, Button, TextInput, StyleSheet} from 'react-native';
+import MainBottomNavigation from "./navigation/MainBottomNavigation";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-class LoginApp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {email: "", password: ""}
-    }
-    render() {
-        return (
-            <View style={styles.container}>
-                <Image
-                    source={{
-                        uri: 'https://reactnative.dev/docs/assets/p_cat2.png'
-                    }}
-                    style={{width: 200, height: 200}}
-                />
-                <Text> Selamat Datang! </Text>
-                <TextInput
-                    style={styles.inputText}
-                    defaultValue="Email"
-                />
-                <Button
-                    title="Masuk"
-                    onPress={() => Alert.alert('Im pressed')}
-                />
-            </View>
-        );
-    }
+const Stack = createStackNavigator();
+
+export default function App() {
+    return (
+        <NavigationContainer>
+            <MainBottomNavigation/>
+        </NavigationContainer>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -42,5 +27,3 @@ const styles = StyleSheet.create({
         borderWidth: 1
     }
 })
-
-export default LoginApp;
