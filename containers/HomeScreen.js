@@ -1,7 +1,15 @@
-import React from "react"
-import {View, Text, Image, Button, StyleSheet} from "react-native"
+import React from "react";
+import {View, Text, Image, Button, StyleSheet} from "react-native";
+import { getGenreList } from "../data/GenreList";
+import { getPopularList } from "../data/PopularList";
+import { getTopRatedList } from "../data/TopRatedList";
+import { getUpcomingList } from "../data/UpcomingList";
 
-export default function HomeScreen() {
+function HomeScreen() {
+    React.useEffect(() => {
+
+    })
+
     return (
         <View>
             <View style={styles.header}>
@@ -26,3 +34,5 @@ const styles = StyleSheet.create({
         fontStyle: 'bold'
     }
 })
+
+export default HomeScreen;
