@@ -14,7 +14,7 @@ export default class CustomInputBox extends Component {
 
 const styles = StyleSheet.create({
     inputBox: {
-        width: 300,
+        width: "90%",
         height: 40,
         backgroundColor: "#fff3e0",
         borderRadius: 16,

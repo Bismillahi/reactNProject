@@ -11,7 +11,7 @@ const IconNavigation = ({ name, ...props }) => {
     return (
       <View style={styles.iconNavBottom}>
           {icon[{name}]}
-          <Text></Text>
+          <Text style={styles.navText}></Text>
       </View>
     );
 };

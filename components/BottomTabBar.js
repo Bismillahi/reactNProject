@@ -43,7 +43,7 @@ const BottomTabBar = ({state, descriptors, navigation}) => {
                         style={{flex: 1}}
                     >
                         <MaterialIcons name={'home'}/>
-                        <Text style={{color: isFocused ? '#673ab7' : '#222'}}>
+                        <Text style={{color: isFocused ? '#DC681E' : '#222'}}>
                             {label}
                         </Text>
                     </TouchableOpacity>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     }
 })
 
