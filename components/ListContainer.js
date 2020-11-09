@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from "react-native";
 import axios from "axios";
+import PopularList from './PopularList';
+import UpcomingList from './UpcomingList';
 
 const API_DETAIL_URL = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
 
-const PopularListContainer = props => {
-    const { dataResult } = props
+const ListContainer = props => {
+    const { dataResult, listType } = props
 
     const dataSource = [{}]
 
@@ -64,7 +66,21 @@ const PopularListContainer = props => {
     });
 
     return(
-      <View>
-      </View>
+        <View>
+            <Text>{{listType} + " Movie"}</Text>
+            {() => {
+                if (listType === "Popular") {
+                    return (
+                        <PopularList dataSource={dataSource}/>
+                    );
+                } else if (listType === "Upcoming") {
+                    return (
+                        <UpcomingList dataSource={dataSource}/>
+                    );
+                }
+            }}
+        </View>
     );
 }
+
+export default ListContainer;
