@@ -67,15 +67,27 @@ const ListContainer = props => {
 
     return(
         <View>
-            <Text>{{listType} + " Movie"}</Text>
             {() => {
-                if (listType === "Popular") {
+                if (listType === "popular") {
                     return (
-                        <PopularList dataSource={dataSource}/>
+                        <View>
+                            <Text>Popular Movie</Text>
+                            <PopularList dataSource={dataSource}/>
+                        </View>
                     );
-                } else if (listType === "Upcoming") {
+                } else if (listType === "upcoming") {
                     return (
-                        <UpcomingList dataSource={dataSource}/>
+                        <View>
+                            <Text>Popular Movie</Text>
+                            <UpcomingList dataSource={dataSource}/>
+                        </View>
+                    );
+                } else if (listType === "top_rated") {
+                    return (
+                        <View>
+                            <Text>Top Rated Movie</Text>
+                            <UpcomingList dataSource={dataSource}/>
+                        </View>
                     );
                 }
             }}

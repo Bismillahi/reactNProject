@@ -1,6 +1,7 @@
 import React from "react";
 import {View, Text, Image, Button, StyleSheet} from "react-native";
 import axios from 'axios';
+import ListContainer from '../components/ListContainer';
 
 const API_URL = "https://api.themoviedb.org/3"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
@@ -39,7 +40,7 @@ class HomeScreen extends React.Component {
                     console.log('getting data from fetch', response);
                     setTimeout(() => {
                         this.setState({
-                            loaded: true,
+                            loaded: true
                         });
                         mDataContainer[value] = response
                     }, 2000);
@@ -61,7 +62,12 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <View>
-
+                <ListContainer
+                    listType={this.dataName[0]}
+                    dataResult={this.state.dataContainer[this.dataName[0]]}/>
+                <ListContainer
+                    listType={this.dataName[1]}
+                    dataResult={this.state.dataContainer[this.dataName[1]]}/>
             </View>
         );
     }
