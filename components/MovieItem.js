@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from "react-native";
 
 const IMAGE_DOMAIN_URL = "https://image.tmdb.org/t/p/w500/"
 
-const MovieItem = ({
-    title, poster, year,
-    genre, teams, actors,
-    rating
-                   }) => {
+const MovieItem = props => {
+
+    const {
+        title, poster, year,
+        genre, teams, actors,
+        rating
+    } = props
+
+    useEffect(() => {
+
+    })
+
     return (
       <View style={styles.itemContainer}>
         <Image
