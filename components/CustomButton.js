@@ -2,15 +2,13 @@ import React, {Component} from "react";
 import {StyleSheet, TouchableOpacity} from "react-native";
 import Text from "./CustomText";
 
-class CustomButton extends Component {
-
-    render() {
-        return (
-            <TouchableOpacity onPress={() => {}} style={styles.appButtonCont}>
-                <Text style={styles.appButtonText} type="bold">{this.props.children}</Text>
-            </TouchableOpacity>
-        );
-    }
+const CustomButton = (props) => {
+    const {screenNav} = props;
+    return (
+        <TouchableOpacity onPress={screenNav} style={styles.appButtonCont}>
+            <Text style={styles.appButtonText} type="bold">{props.children}</Text>
+        </TouchableOpacity>
+    );
 }
 export default CustomButton;
 
@@ -21,11 +19,13 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         paddingVertical: 10,
         marginVertical: 8,
-        paddingHorizontal: 12
+        paddingHorizontal: 12,
+        width:"90%"
     },
     appButtonText: {
         fontSize: 16,
         color: "#fff",
+        fontFamily: "Poppins",
         alignSelf: "center"
     }
 })

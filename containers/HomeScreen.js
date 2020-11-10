@@ -2,6 +2,7 @@ import React from "react";
 import {View, Text, Image, Button, StyleSheet} from "react-native";
 import axios from 'axios';
 import ListContainer from '../components/ListContainer';
+import FullWidthImage from 'react-native-fullwidth-image';
 
 const API_URL = "https://api.themoviedb.org/3"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
@@ -62,6 +63,11 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <View>
+                <FullWidthImage
+                    style={styles.imgBanner}
+                    source={require('../assets/header1.png')}
+                    resizeMode="cover"
+                />
                 <ListContainer
                     listType={this.dataName[0]}
                     dataResult={this.state.dataContainer[this.dataName[0]]}/>
@@ -74,7 +80,13 @@ class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 24,
+        justifyContent: "center"
+    },
     header: {
+        backgroundOrigin: require('../assets/header1.png'),
         backgroundColor: '#DC681E',
         height: 100
     },
@@ -82,6 +94,9 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: '#ffffff',
         fontStyle: 'bold'
+    },
+    imgBanner: {
+        height: 100
     }
 })
 

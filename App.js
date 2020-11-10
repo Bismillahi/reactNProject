@@ -1,23 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, Image, Button, TextInput, StyleSheet} from 'react-native';
-import MainBottomNavigation from "./navigation/MainBottomNavigation";
+import StackNavigation from "./navigation/StackNavigation";
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import {AppLoading} from "expo";
-import Text from "./src/components/CustomText"
-import * as Font from "expo-font";
-
-import Login from './src/pages/Login';
-
-// const Stack = createStackNavigator();
-//
-// export default function App() {
-//     return (
-//         <NavigationContainer>
-//             <MainBottomNavigation/>
-//         </NavigationContainer>
-//     );
-// }
+import * as Font from 'expo-font';
 
 let customFonts = {
     'Poppins-Regular': require('./assets/font/Poppins/Poppins-Regular.ttf'),
@@ -36,36 +21,19 @@ export default class App extends Component {
     }
 
     async componentDidMount() {
-        await Font.loadAsync(customFonts);
+        // await Font.loadAsync(customFonts);
         this.setState({ fontsLoaded: true });
     }
 
     render() {
         if (this.state.fontsLoaded) {
             return (
-                <View style={styles.container}>
-                    <StatusBar barStyle="dark-content" />
-                    <Login/>
-                </View>
+                <NavigationContainer>
+                    <StackNavigation/>
+                </NavigationContainer>
             );
         } else {
             return <AppLoading />;
         }
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center"
-    },
-    inputText: {
-        height: 40,
-        width: 310,
-        borderColor: 'gray',
-        borderWidth: 1
-    },
-    mainText: {
-        fontSize: 18
-    }
-})

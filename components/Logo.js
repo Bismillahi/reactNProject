@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image} from 'react-native';
 import * as Font from "expo-font";
-import Text from "../components/CustomText";
+import Text from "./CustomText";
 
 
 let customFonts = {
-    'Poppins-Regular': require('../../assets/font/Poppins/Poppins-Regular.ttf')
+    'Poppins-Regular': require('../assets/font/Poppins/Poppins-Regular.ttf')
 };
 
 export default class Logo extends Component {
@@ -27,9 +27,9 @@ export default class Logo extends Component {
             <View style={styles.container}>
                 <Image
                     style={styles.logo}
-                    source={require('../../assets/dekriya.png')}
+                    source={require('../assets/dekriya.png')}
                 />
-                <Text style={styles.logoText}>DeKriya</Text>
+                <Text style={styles.logoText}>DeMovie</Text>
             </View>
         );
     }
