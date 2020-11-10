@@ -1,51 +1,41 @@
-import React from 'react';
-import {View, Text, Image, Button, AppRegistry, StatusBar, StyleSheet} from "react-native";
+import React, {useEffect, useState} from 'react';
+import {View, ActivityIndicator, SafeAreaView, Text, Image, Button, AppRegistry, StatusBar, StyleSheet} from "react-native";
 import { getGenreList } from "../data/GenreList";
 import { getPopularList } from "../data/PopularList";
 import { getTopRatedList } from "../data/TopRatedList";
 import { getUpcomingList } from "../data/UpcomingList";
 import {useTheme} from "@react-navigation/native";
-import Swiper from 'react-native-swiper';
+import FullWidthImage from 'react-native-fullwidth-image';
+import {FlatList} from "react-native-web";
 
-const HomeScreen  = () => {
-    React.useEffect(() => {
+function HomeScreen (){
 
+    useEffect(() => {
     })
 
     const {colors} = useTheme();
     const theme = useTheme();
 
     return (
-        <View>
-            <View style={styles.container}>
-                <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'}/>
-                <Image
-                    style={styles.imgBanner}
-                    source={require('../assets/header1.png')}
-                />
-                <Swiper style={styles.wrapper} showsButtons={true}>
-                    <View style={styles.slide1}>
-                        <Text style={styles.text}>Hello Swiper</Text>
-                    </View>
-                    <View style={styles.slide2}>
-                        <Text style={styles.text}>Beautiful</Text>
-                    </View>
-                    <View style={styles.slide3}>
-                        <Text style={styles.text}>And simple</Text>
-                    </View>
-                </Swiper>
-            </View>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'}/>
+            <FullWidthImage
+                style={styles.imgBanner}
+                source={require('../assets/header1.png')}
+                resizeMode="cover"
+            />
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flexGrow: 1,
-        justifyContent: "center",
-        alignItems: "center"
+        flex: 1,
+        padding: 24,
+        justifyContent: "center"
     },
     header: {
+        backgroundOrigin: require('../assets/header1.png'),
         backgroundColor: '#DC681E',
         height: 100
     },
@@ -55,34 +45,8 @@ const styles = StyleSheet.create({
         fontStyle: 'bold'
     },
     imgBanner: {
-        width: 250,
         height: 100
-    },
-    wrapper: {},
-    slide1: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#9DD6EB'
-    },
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5'
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9'
-    },
-    text: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold'
     }
 })
 
 export default HomeScreen;
-AppRegistry.registerComponent('myproject', () => SwiperComponent)

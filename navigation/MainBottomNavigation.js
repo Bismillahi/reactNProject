@@ -23,6 +23,7 @@ const MainBottomNavigation = () => {
                 style={styles.tabBarContainer}
                 component={HomeScreen}
                 options={{
+                    title: "Beranda",
                     tabBarlabel: "Beranda",
                     tabBarIcon: ({color, size}) => (
                         <MaterialIcons name={"home"} color={color} size={size}/>
