@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from "react-native";
 import axios from "axios";
 import PopularList from './PopularList';
 import UpcomingList from './UpcomingList';
+import {FlatList} from "react-native-web";
 
 const API_DETAIL_URL = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
 
 const ListContainer = props => {
-    const { dataResult, listType } = props
+    const { dataResult, listType, loaded } = props;
+    const [dataResults, setState] = useState([dataResult]);
 
-    const dataSource = [{}]
+    const dataSource = [{}];
 
     const axiosGetReq = (credits, id, currentData) => {
         axios
@@ -53,13 +55,14 @@ const ListContainer = props => {
                 }, 2000);
             })
             .catch(error => console.log(error));
-    }
+    };
 
     const getDatasDetail = () => {
-        dataResult.forEach((value) => {
-            axiosGetReq(false, value.id.toString(), null);
-        });
-    }
+        // const {dataResult} = props
+        // dataResults.forEach((value) => {
+        //     axiosGetReq(false, value.id.toString(), null);
+        // });
+    };
 
     useEffect(() => {
         getDatasDetail();
@@ -67,19 +70,41 @@ const ListContainer = props => {
 
     return(
         <View>
+            <Text>{listType + " Movie"}</Text>
+            <FlatList
+                data={dataResult}
+                horizontal={true}
+                renderItem={({item, index, separators}) => (
+                    <Text>
+                        {item.title}
+                    </Text>
+                )}/>
             {() => {
-                if (listType === "popular") {
+                if (listType === "Popular") {
                     return (
                         <View>
-                            <Text>Popular Movie</Text>
-                            <PopularList dataSource={dataSource}/>
+                            {loaded ? (
+                                <View>
+                                    <Text>{listType + " Movie"}</Text>
+                                    <FlatList
+                                        data={dataResult}
+                                        renderItem={({item, index, separators}) => (
+                                            <Text>
+                                                {item.title}
+                                            </Text>
+                                        )}/>
+                                </View>
+                            ) : (
+                                <Text>Belum</Text>
+                            )
+                            }
                         </View>
                     );
-                } else if (listType === "upcoming") {
+                } else if (listType === "Upcoming") {
                     return (
                         <View>
-                            <Text>Popular Movie</Text>
-                            <UpcomingList dataSource={dataSource}/>
+                            <Text>{listType + " Upcoming"}</Text>
+                            {/*<UpcomingList dataSource={dataSource}/>*/}
                         </View>
                     );
                 } else if (listType === "top_rated") {

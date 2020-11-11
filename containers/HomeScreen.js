@@ -2,6 +2,7 @@ import React from "react";
 import {View, Text, Image, Button, StyleSheet, TouchableOpacity} from "react-native";
 import axios from 'axios';
 import ListContainer from '../components/ListContainer';
+import PopularList from "../components/PopularList";
 import FullWidthImage from 'react-native-fullwidth-image';
 import {FlatList} from "react-native-web";
 
@@ -14,17 +15,25 @@ export default class HomeScreen extends React.Component {
         "popular", "upcoming"
     ];
 
-    static API_NAME = {
+    API_NAME = {
         popular: "/movie/popular",
         upcoming: "/movie/upcoming"
     };
 
     constructor(props) {
         super(props)
-        this.state  = {
-            dataContainer: [],
-            loaded: false
+        this.state = {
+            popularMovieData: [],
+            upcomingMovieData: [],
+            pmLoaded: false,
+            umLoaded: false
         }
+    }
+
+    successLoad = () => {
+        this.setState({
+            loaded: true
+        });
     }
 
     getDataFetch = () => {
@@ -32,22 +41,26 @@ export default class HomeScreen extends React.Component {
             popular: {},
             upcoming: {}
         };
-        this.dataName.forEach(function (value) {
+        this.dataName.forEach((value) => {
             axios
-                .get(API_URL + HomeScreen.API_NAME[value] + "?api_key=" + API_KEY)
+                .get(API_URL + this.API_NAME[value] + "?api_key=" + API_KEY)
                 .then(response => {
                     console.log('getting data from fetch', response);
-                    this.setState({
-                        loaded: true
-                    });
-                    mDataContainer[value] = response.data
-                    // setTimeout(() => {
-                    // }, 2000);
+                    setTimeout(() => {
+                        if (value === "popular") {
+                            this.setState({
+                                popularMovieData: response.data.results,
+                                pmLoaded: true
+                            });
+                        } else {
+                            this.setState({
+                                upcomingMovieData: response.data.results,
+                                umLoaded: true
+                            });
+                        }
+                    }, 2000);
                 })
                 .catch(error => console.log(error));
-        });
-        this.setState({
-           dataContainer: mDataContainer["popular"].results
         });
     }
 
@@ -63,26 +76,17 @@ export default class HomeScreen extends React.Component {
                 {/*    source={require('../assets/header1.png')}*/}
                 {/*    resizeMode="cover"*/}
                 {/*/>*/}
-                <Button onPress={() => this.setState({loaded: true})} title={"ganti"}/>
-                {this.state.loaded? (
-                    // <FlatList
-                    //     data={this.state.dataContainer}
-                    //     renderItem={({item, index, separators}) => (
-                    //         <Text>
-                    //             {item.title}
-                    //         </Text>
-                    //     )}/>
-                    <Text>Sudah</Text>
-                ): (
-                    <Text>Belum</Text>
-                )
-                }
+                {/*{this.state.popularMovieData.map(function (obj, i) {*/}
+                {/*    return(*/}
+                {/*        <Text>{obj.title}</Text>*/}
+                {/*    );*/}
+                {/*})}*/}
+                <PopularList
+                    dataSource={this.state.popularMovieData}/>
                 {/*<ListContainer*/}
-                {/*    listType={this.dataName[0]}*/}
-                {/*    dataResult={this.state.dataContainer[this.dataName[0]]}/>*/}
-                {/*<ListContainer*/}
-                {/*    listType={this.dataName[1]}*/}
-                {/*    dataResult={this.state.dataContainer[this.dataName[1]]}/>*/}
+                {/*    listType={"Upcoming"}*/}
+                {/*    dataResult={this.state.upcomingMovieData.results}*/}
+                {/*    loaded={this.state.pmLoaded}/>*/}
             </View>
         );
     }
