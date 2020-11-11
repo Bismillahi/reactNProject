@@ -1,19 +1,20 @@
 import React from "react";
-import {View, Text, Image, Button, StyleSheet} from "react-native";
+import {View, Text, Image, Button, StyleSheet, TouchableOpacity} from "react-native";
 import axios from 'axios';
 import ListContainer from '../components/ListContainer';
 import FullWidthImage from 'react-native-fullwidth-image';
+import {FlatList} from "react-native-web";
 
 const API_URL = "https://api.themoviedb.org/3"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
 
     dataName = [
         "popular", "upcoming"
     ];
 
-    API_NAME = {
+    static API_NAME = {
         popular: "/movie/popular",
         upcoming: "/movie/upcoming"
     };
@@ -21,10 +22,7 @@ class HomeScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state  = {
-            dataContainer: {
-                popular: [],
-                upcoming: []
-            },
+            dataContainer: [],
             loaded: false
         }
     }
@@ -36,23 +34,20 @@ class HomeScreen extends React.Component {
         };
         this.dataName.forEach(function (value) {
             axios
-                .get(API_URL + this.API_NAME[value] + "?api_key=" + API_KEY)
+                .get(API_URL + HomeScreen.API_NAME[value] + "?api_key=" + API_KEY)
                 .then(response => {
                     console.log('getting data from fetch', response);
-                    setTimeout(() => {
-                        this.setState({
-                            loaded: true
-                        });
-                        mDataContainer[value] = response
-                    }, 2000);
+                    this.setState({
+                        loaded: true
+                    });
+                    mDataContainer[value] = response.data
+                    // setTimeout(() => {
+                    // }, 2000);
                 })
                 .catch(error => console.log(error));
         });
         this.setState({
-           dataContainer: {
-               popular: mDataContainer["popular"].results,
-               upcoming: mDataContainer["upcoming"].results
-           }
+           dataContainer: mDataContainer["popular"].results
         });
     }
 
@@ -63,17 +58,31 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <View>
-                <FullWidthImage
-                    style={styles.imgBanner}
-                    source={require('../assets/header1.png')}
-                    resizeMode="cover"
-                />
-                <ListContainer
-                    listType={this.dataName[0]}
-                    dataResult={this.state.dataContainer[this.dataName[0]]}/>
-                <ListContainer
-                    listType={this.dataName[1]}
-                    dataResult={this.state.dataContainer[this.dataName[1]]}/>
+                {/*<FullWidthImage*/}
+                {/*    style={styles.imgBanner}*/}
+                {/*    source={require('../assets/header1.png')}*/}
+                {/*    resizeMode="cover"*/}
+                {/*/>*/}
+                <Button onPress={() => this.setState({loaded: true})} title={"ganti"}/>
+                {this.state.loaded? (
+                    // <FlatList
+                    //     data={this.state.dataContainer}
+                    //     renderItem={({item, index, separators}) => (
+                    //         <Text>
+                    //             {item.title}
+                    //         </Text>
+                    //     )}/>
+                    <Text>Sudah</Text>
+                ): (
+                    <Text>Belum</Text>
+                )
+                }
+                {/*<ListContainer*/}
+                {/*    listType={this.dataName[0]}*/}
+                {/*    dataResult={this.state.dataContainer[this.dataName[0]]}/>*/}
+                {/*<ListContainer*/}
+                {/*    listType={this.dataName[1]}*/}
+                {/*    dataResult={this.state.dataContainer[this.dataName[1]]}/>*/}
             </View>
         );
     }
@@ -99,5 +108,3 @@ const styles = StyleSheet.create({
         height: 100
     }
 })
-
-export default HomeScreen;

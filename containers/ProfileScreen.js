@@ -4,7 +4,7 @@ import Logo from "../components/Logo";
 import CustomInputBox from "../components/CustomInputBox";
 import CustomButton from "../components/CustomButton";
 
-class ProfileScreen extends Component {
+class ProfileScreen extends React.Component {
     render() {
         const {navigation} = this.props;
         return (

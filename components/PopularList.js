@@ -13,7 +13,8 @@ const PopularList = props => {
         data={dataSource}
         horizontal={true}
         renderItem={({item, index, separators}) => (
-          <TouchableOpacity>
+          <TouchableOpacity
+            >
           </TouchableOpacity>
         )}/>
     );
