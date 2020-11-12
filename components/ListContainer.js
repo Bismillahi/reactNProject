@@ -11,6 +11,7 @@ const ListContainer = props => {
     const { dataResult, listType } = props
 
     const dataSource = [{}]
+    let mDataResult = []
 
     const axiosGetReq = (credits, id, currentData) => {
         axios

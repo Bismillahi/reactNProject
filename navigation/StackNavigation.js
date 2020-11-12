@@ -14,8 +14,7 @@ const StackNavigation = () => {
             <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}}/>
             <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
             <Stack.Screen name="Signup" component={SignupScreen} options={{headerShown: false}}/>
-            <Stack.Screen name="MainNavigation" component={MainBottomNavigation}/>
-
+            <Stack.Screen name="MainNavigation" component={MainBottomNavigation} options={{headerShown: false}}/>
         </Stack.Navigator>
     );
 }

@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         justifyContent: "center",
         alignItems: "center",
-        padding: '16'
+        padding: '16',
+        backgroundColor: "#fff"
     },
     signupTextCont: {
         flexGrow: 1,

@@ -13,7 +13,7 @@ class HomeScreen extends React.Component {
         "popular", "upcoming"
     ];
 
-    API_NAME = {
+    static API_NAME = {
         popular: "/movie/popular",
         upcoming: "/movie/upcoming"
     };
@@ -36,18 +36,19 @@ class HomeScreen extends React.Component {
         };
         this.dataName.forEach(function (value) {
             axios
-                .get(API_URL + this.API_NAME[value] + "?api_key=" + API_KEY)
+                .get(API_URL + HomeScreen.API_NAME[value] + "?api_key=" + API_KEY)
                 .then(response => {
                     console.log('getting data from fetch', response);
                     setTimeout(() => {
-                        this.setState({
-                            loaded: true
-                        });
-                        mDataContainer[value] = response
+                        // this.setState({
+                        //     loaded: true
+                        // });
+                        mDataContainer[value] = response.data
                     }, 2000);
                 })
                 .catch(error => console.log(error));
         });
+        // console.log(mDataContainer["popular"].results)
         this.setState({
            dataContainer: {
                popular: mDataContainer["popular"].results,
@@ -68,12 +69,15 @@ class HomeScreen extends React.Component {
                     source={require('../assets/header1.png')}
                     resizeMode="cover"
                 />
-                <ListContainer
-                    listType={this.dataName[0]}
-                    dataResult={this.state.dataContainer[this.dataName[0]]}/>
-                <ListContainer
-                    listType={this.dataName[1]}
-                    dataResult={this.state.dataContainer[this.dataName[1]]}/>
+                {/*<Text style={styles.headerTitle}>*/}
+                {/*    {this.state.dataContainer['popular'].map(item => item.title)}*/}
+                {/*</Text>*/}
+                {/*<ListContainer*/}
+                {/*    listType={this.dataName[0]}*/}
+                {/*    dataResult={this.state.dataContainer[this.dataName[0]]}/>*/}
+                {/*<ListContainer*/}
+                {/*    listType={this.dataName[1]}*/}
+                {/*    dataResult={this.state.dataContainer[this.dataName[1]]}/>*/}
             </View>
         );
     }
@@ -86,7 +90,6 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     header: {
-        backgroundOrigin: require('../assets/header1.png'),
         backgroundColor: '#DC681E',
         height: 100
     },
