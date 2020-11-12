@@ -1,5 +1,6 @@
 import React from "react";
 import {View, Text, Image, Button} from "react-native";
+import * as axios from "http";
 
 const API_URL = "https://api.themoviedb.org/3"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
@@ -40,9 +41,9 @@ class ListScreen extends React.Component {
     render() {
         return (
             <View>
-                <ListContainer
-                    listType={this.dataName}
-                    dataResult={this.state.dataResult}/>
+                {/*<ListContainer*/}
+                {/*    listType={this.dataName}*/}
+                {/*    dataResult={this.state.dataResult}/>*/}
             </View>
         );
     }

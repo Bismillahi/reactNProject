@@ -46,8 +46,8 @@ const UpcomingItem = props => {
                 style={styles.imageBG}
                 source={{uri: API_IMAGE_URL + movieData.backdrop_path}}>
                 <View style={styles.descContainer}>
-                    <Text fontSize={24} style={styles.title}>{movieData.title}</Text>
-                    <Text fontSize={12} numberOfLines={1} style={styles.genre}>{genres}</Text>
+                    <Text style={[styles.title, styles.text]}>{movieData.title}</Text>
+                    <Text numberOfLines={1} style={[styles.genre, styles.text]}>{genres}</Text>
                 </View>
             </ImageBackground>
         </TouchableOpacity>
@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 155,
         marginRight: 20,
+    },
+    text: {
+        fontFamily: "Poppins"
     },
     imageBG: {
         flex: 1,
@@ -78,12 +81,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     title: {
-        fonWeight: "bold",
+        fontWeight: "bold",
         color: '#ffffff',
+        fontSize: 24
     },
     genre: {
         color: '#ffffff',
         ellipsizeMode: "tail",
+        fontSize: 12
     }
 })
 
