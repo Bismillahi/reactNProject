@@ -4,9 +4,6 @@ import { View, Text, StyleSheet,
     ImageBackground } from "react-native";
 import UpcomingItem from "./UpcomingItem";
 
-const API_DETAIL_URL = "https://api.themoviedb.org/3/movie/"
-const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
-
 const UpcomingList = props => {
     const { dataSource } = props
 

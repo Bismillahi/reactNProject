@@ -34,11 +34,11 @@ const PopularItem = props => {
 
     return(
         <View>
-            {movieCrew.map(function (item, i) {
-                return (
-                    <Text>{item.name}</Text>
-                );
-            })}
+            {/*{movieCrew.map(function (item, i) {*/}
+            {/*    return (*/}
+            {/*        <Text>{item.name}</Text>*/}
+            {/*    );*/}
+            {/*})}*/}
             {/*{movieCrew.map((value) => {*/}
             {/*    <Text>{value.name}</Text>*/}
             {/*})}*/}

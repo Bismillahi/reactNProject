@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from "react-native";
 import axios from "axios";
-import PopularList from './PopularList';
-import UpcomingList from './UpcomingList';
+import PopularList from './movie/popular/PopularList';
+import UpcomingList from './movie/upcoming/UpcomingList';
 import {FlatList} from "react-native-web";
 
 const API_DETAIL_URL = "https://api.themoviedb.org/3/movie/"
