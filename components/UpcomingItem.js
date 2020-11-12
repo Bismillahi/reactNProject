@@ -6,10 +6,11 @@ import {
 import axios from 'axios';
 
 const API_DETAIL_URL = "https://api.themoviedb.org/3/movie/"
+const API_IMAGE_URL = "https://image.tmdb.org/t/p/w500/"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
 
 const UpcomingItem = props => {
-    const { dataId } = props;
+    const {dataId} = props;
     const [movieData, setMovie] = useState({});
     const [movieGenres, setGenres] = useState([]);
     const [genres, setStringGenre] = useState("");
@@ -38,15 +39,15 @@ const UpcomingItem = props => {
         setStringGenre(str);
     });
 
-    return(
+    return (
         <TouchableOpacity
             style={styles.movieContainer}>
             <ImageBackground
                 style={styles.imageBG}
-                source={{ uri: dataSource.backdrop}}>
-                <View>
-                    <Text style={styles.title}>{movieData.title}</Text>
-                    <Text style={styles.genre}>{genres}</Text>
+                source={{uri: API_IMAGE_URL + movieData.backdrop_path}}>
+                <View style={styles.descContainer}>
+                    <Text fontSize={24} style={styles.title}>{movieData.title}</Text>
+                    <Text fontSize={12} numberOfLines={1} style={styles.genre}>{genres}</Text>
                 </View>
             </ImageBackground>
         </TouchableOpacity>
@@ -56,25 +57,33 @@ const UpcomingItem = props => {
 const styles = StyleSheet.create({
     movieContainer: {
         width: 275,
-        paddingVertical: 28,
         justifyContent: 'center',
         alignItems: 'center',
         height: 155,
-        marginRight: 20
+        marginRight: 20,
     },
     imageBG: {
+        flex: 1,
+        flexDirection: 'row',
+        width: 275,
+        height: 155,
+        borderRadius: 8,
         resizeMode: 'cover',
-        borderRadius: 8
+        overflow: "hidden",
+        alignItems: 'flex-end'
+    },
+    descContainer: {
+        flex: 1,
+        padding: 12,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     title: {
-        fonSize: 24,
         fonWeight: "bold",
-        color: '#000000'
+        color: '#ffffff',
     },
     genre: {
-        fonSize: 14,
-        color: '#808080',
-        ellipsizeMode: "tail"
+        color: '#ffffff',
+        ellipsizeMode: "tail",
     }
 })
 

@@ -3,6 +3,7 @@ import {View, Text, Image, Button, StyleSheet, TouchableOpacity} from "react-nat
 import axios from 'axios';
 import ListContainer from '../components/ListContainer';
 import PopularList from "../components/PopularList";
+import UpcomingList from "../components/UpcomingList";
 import FullWidthImage from 'react-native-fullwidth-image';
 import {FlatList} from "react-native-web";
 
@@ -81,8 +82,8 @@ export default class HomeScreen extends React.Component {
                 {/*        <Text>{obj.title}</Text>*/}
                 {/*    );*/}
                 {/*})}*/}
-                <PopularList
-                    dataSource={this.state.popularMovieData}/>
+                <UpcomingList
+                    dataSource={this.state.upcomingMovieData}/>
                 {/*<ListContainer*/}
                 {/*    listType={"Upcoming"}*/}
                 {/*    dataResult={this.state.upcomingMovieData.results}*/}
