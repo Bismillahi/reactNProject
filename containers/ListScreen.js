@@ -1,33 +1,41 @@
 import React from "react";
 import {View, Text, Image, Button} from "react-native";
-import * as axios from "http";
+import TopRatedList from "../components/movie/toprated/TopRatedList";
+import SearchComponent from "../components/SearchComponent";
+import axios from 'axios';
 
-const API_URL = "https://api.themoviedb.org/3"
-const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
+const API_URL = "https://api.themoviedb.org/3";
+const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf";
+const API_SEARCH = "/search/movie";
+const API_TOP_RATED = "/movie/top_rated";
 
 class ListScreen extends React.Component {
-
-    dataName = "top_rated";
-
-    API_NAME = "/movie/top_rated";
 
     constructor(props) {
         super(props)
         this.state  = {
-            dataResult: [],
-            loaded: false
+            movieData: [],
+            trLoaded: false
         }
     }
 
-    getDataFetch = () => {
+    searchMovieData = (input) => {
+        const query = input;
+        query.replace(/\s/g, '+');
+
+        this.getDataFetch(true, query);
+    }
+
+    getDataFetch = (search, query) => {
         axios
-            .get(API_URL + this.API_NAME + "?api_key=" + API_KEY)
+            .get(API_URL + (search? API_SEARCH : API_TOP_RATED)
+                + "?api_key=" + (search? (API_KEY + "&query=" + query) : (API_KEY)))
             .then(response => {
                 console.log('getting data from fetch', response);
                 setTimeout(() => {
                     this.setState({
-                        loaded: true,
-                        dataResult: response.results
+                        trLoaded: true,
+                        movieData: response.data.results
                     });
                 }, 2000);
             })
@@ -35,15 +43,15 @@ class ListScreen extends React.Component {
     }
 
     componentDidMount() {
-        this.getDataFetch()
+        this.getDataFetch(false, null);
     }
 
     render() {
         return (
             <View>
-                {/*<ListContainer*/}
-                {/*    listType={this.dataName}*/}
-                {/*    dataResult={this.state.dataResult}/>*/}
+                <SearchComponent onTextChanged={this.searchMovieData}/>
+                <TopRatedList
+                    dataSource={this.state.movieData}/>
             </View>
         );
     }

@@ -2,8 +2,8 @@ import React from "react";
 import {View, Text, Image, Button, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity} from "react-native";
 import axios from 'axios';
 import ListContainer from '../components/ListContainer';
-import PopularList from "../components/PopularList";
-import UpcomingList from "../components/UpcomingList";
+import PopularList from "../components/movie/popular/PopularList";
+import UpcomingList from "../components/movie/upcoming/UpcomingList";
 import FullWidthImage from 'react-native-fullwidth-image';
 
 const API_URL = "https://api.themoviedb.org/3"

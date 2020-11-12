@@ -3,10 +3,6 @@ import { View, Text, StyleSheet,
     SafeAreaView, Image, FlatList, TouchableOpacity,
     ImageBackground } from "react-native";
 import UpcomingItem from "./UpcomingItem";
-import PopularItem from "./PopularItem";
-
-const API_DETAIL_URL = "https://api.themoviedb.org/3/movie/"
-const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
 
 const UpcomingList = props => {
     const { dataSource } = props

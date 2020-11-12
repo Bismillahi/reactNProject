@@ -66,12 +66,21 @@ const PopularItem = props => {
                     <Text numberOfLines={1} style={[styles.actor, styles.text, {fontSize: 12, color: '#7E7E7E'}]}>{actors}</Text>
                 </View>
                 <ImageBackground
-                    source={require('../assets/star.png')}
+                    source={require('../../../assets/star.png')}
                     style={styles.ratingIcon}
                 >
                     <Text style={[styles.text, styles.ratingText]}>{movieData.vote_average}</Text>
                 </ImageBackground>
             </TouchableOpacity>
+            {/*{movieCrew.map(function (item, i) {*/}
+            {/*    return (*/}
+            {/*        <Text>{item.name}</Text>*/}
+            {/*    );*/}
+            {/*})}*/}
+            {/*{movieCrew.map((value) => {*/}
+            {/*    <Text>{value.name}</Text>*/}
+            {/*})}*/}
+            {/*<Text>{movieDataItem.title}</Text>*/}
         </View>
     );
 }
