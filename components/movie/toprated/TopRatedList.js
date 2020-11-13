@@ -26,7 +26,6 @@ const TopRatedList = props => {
             <Text>{"Top Rated Movie"}</Text>
             <FlatList
                 data={listData}
-                horizontal={true}
                 renderItem={({item, index, separators}) => (
                     <PopularItem dataId={item.id.toString()}/>
                 )}/>

@@ -1,11 +1,10 @@
 import React from "react";
-import {View, Text, Image, Button, StyleSheet, TouchableOpacity} from "react-native";
+import {View, Text, Image, Button, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity} from "react-native";
 import axios from 'axios';
 import ListContainer from '../components/ListContainer';
 import PopularList from "../components/movie/popular/PopularList";
 import UpcomingList from "../components/movie/upcoming/UpcomingList";
 import FullWidthImage from 'react-native-fullwidth-image';
-import {FlatList} from "react-native-web";
 
 const API_URL = "https://api.themoviedb.org/3"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
@@ -77,17 +76,14 @@ export default class HomeScreen extends React.Component {
                 {/*    source={require('../assets/header1.png')}*/}
                 {/*    resizeMode="cover"*/}
                 {/*/>*/}
-                {/*{this.state.popularMovieData.map(function (obj, i) {*/}
-                {/*    return(*/}
-                {/*        <Text>{obj.title}</Text>*/}
-                {/*    );*/}
-                {/*})}*/}
-                <UpcomingList
-                    dataSource={this.state.upcomingMovieData}/>
-                {/*<ListContainer*/}
-                {/*    listType={"Upcoming"}*/}
-                {/*    dataResult={this.state.upcomingMovieData.results}*/}
-                {/*    loaded={this.state.pmLoaded}/>*/}
+                <ScrollView style={styles.container} >
+                    <UpcomingList
+                        dataSource={this.state.upcomingMovieData}
+                    />
+                    <PopularList
+                        dataSource={this.state.popularMovieData}
+                    />
+                </ScrollView>
             </View>
         );
     }
@@ -97,7 +93,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-        justifyContent: "center"
     },
     header: {
         backgroundColor: '#DC681E',

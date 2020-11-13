@@ -10,10 +10,10 @@ const PopularList = props => {
 
     return (
         <View>
-            <Text>{"Popular Movie"}</Text>
+            <Text style={[styles.title, styles.text]}>{"Popular Movie"}</Text>
             <FlatList
                 data={dataSource}
-                horizontal={true}
+                horizontal={false}
                 renderItem={({item, index, separators}) => (
                     <PopularItem dataId={item.id.toString()}/>
                 )}/>
@@ -22,3 +22,18 @@ const PopularList = props => {
 }
 
 export default PopularList;
+const styles = StyleSheet.create({
+    listCont: {
+        flex: 1,
+        margin: 16
+    },
+    text: {
+        fontFamily: "Poppins"
+    },
+    title: {
+        color: '#DC681E',
+        fontWeight: 600,
+        fontSize: 21,
+        padding: 8,
+    }
+})

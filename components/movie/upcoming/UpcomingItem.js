@@ -76,6 +76,9 @@ const styles = StyleSheet.create({
         height: 155,
         marginRight: 20,
     },
+    text: {
+        fontFamily: "Poppins"
+    },
     imageBG: {
         flex: 1,
         flexDirection: 'row',
@@ -92,12 +95,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     title: {
-        fonWeight: "bold",
+        fontWeight: "bold",
         color: '#ffffff',
+        fontSize: 24
     },
     genre: {
         color: '#ffffff',
         ellipsizeMode: "tail",
+        fontSize: 12
     }
 })
 
