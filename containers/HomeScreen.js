@@ -23,24 +23,33 @@ export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            popularMovieData: [],
-            upcomingMovieData: [],
+            popularMovieData: [
+                "item1",
+                "item2",
+                "item3",
+                "item4",
+                "item5",
+                "item6",
+                "item7",
+                "item8",
+                "item9",
+                "item10"
+            ],
+            upcomingMovieData: [
+                "item1",
+                "item2",
+                "item3",
+                "item4",
+                "item5"
+            ],
+            tempUpcomingMovieData: [],
+            tempPopularMovieData: [],
             pmLoaded: false,
             umLoaded: false
         }
     }
 
-    successLoad = () => {
-        this.setState({
-            loaded: true
-        });
-    }
-
     getDataFetch = () => {
-        const mDataContainer = {
-            popular: {},
-            upcoming: {}
-        };
         this.dataName.forEach((value) => {
             axios
                 .get(API_URL + HomeScreen.API_NAME[value] + "?api_key=" + API_KEY)
@@ -49,14 +58,13 @@ export default class HomeScreen extends React.Component {
                     setTimeout(() => {
                         if (value === "popular") {
                             this.setState({
-                                popularMovieData: response.data.results,
-                                pmLoaded: true
+                                tempPopularMovieData: response.data.results,
                             });
                         } else {
                             this.setState({
-                                upcomingMovieData: response.data.results,
-                                umLoaded: true
+                                tempUpcomingMovieData: response.data.results,
                             });
+                            this.limitUMMovieData();
                         }
                     }, 2000);
                 })
@@ -64,8 +72,36 @@ export default class HomeScreen extends React.Component {
         });
     }
 
+    limitUMMovieData = () => {
+        let newMovieData = [];
+
+        this.state.tempUpcomingMovieData.forEach((item, i) => {
+            if (i <= 4) {
+                newMovieData.push(item);
+            }
+        });
+
+        this.setState({
+            upcomingMovieData: newMovieData,
+            umLoaded: true,
+        });
+
+        newMovieData = []
+
+        this.state.tempPopularMovieData.forEach((item, i) => {
+            if (i <= 9) {
+                newMovieData.push(item);
+            }
+        });
+
+        this.setState({
+            popularMovieData: newMovieData,
+            pmLoaded: true,
+        });
+    }
+
     componentDidMount() {
-        this.getDataFetch()
+        this.getDataFetch();
     }
 
     render() {
@@ -76,12 +112,14 @@ export default class HomeScreen extends React.Component {
                 {/*    source={require('../assets/header1.png')}*/}
                 {/*    resizeMode="cover"*/}
                 {/*/>*/}
-                <ScrollView style={styles.container} >
+                <ScrollView style={styles.container}>
                     <UpcomingList
                         dataSource={this.state.upcomingMovieData}
+                        loaded={this.state.umLoaded}
                     />
                     <PopularList
                         dataSource={this.state.popularMovieData}
+                        loaded={this.state.pmLoaded}
                     />
                 </ScrollView>
             </View>

@@ -16,6 +16,7 @@ const PopularItem = props => {
     const [actors, setStringActor] = useState("");
     const [movieGenres, setGenres] = useState([]);
     const [genres, setStringGenre] = useState("");
+    const [loaded, setLoadStatus] = useState(false);
 
     const axiosGetReq = (credits, id) => {
         axios
@@ -50,37 +51,44 @@ const PopularItem = props => {
         });
 
         setStringActor(str);
+        setLoadStatus(true);
     });
 
     return(
 
         <View>
-            <TouchableOpacity style={styles.movieContainer}>
-                <Image
-                    style={styles.imageIcon}
-                    source={{uri: API_IMAGE_URL + movieData.poster_path}} >
-                </Image>
-                <View style={styles.descContainer}>
-                    <Text style={[styles.title, styles.text]}>{movieData.title}</Text>
-                    <Text numberOfLines={1} style={[styles.genre, styles.text, {fontSize: 10, color: '#C1C1C1'}]}>{genres}</Text>
-                    <Text numberOfLines={1} style={[styles.actor, styles.text, {fontSize: 12, color: '#7E7E7E'}]}>{actors}</Text>
+            {loaded? (
+                <TouchableOpacity style={styles.movieContainer}>
+                    <Image
+                        style={styles.imageIcon}
+                        source={{uri: API_IMAGE_URL + movieData.poster_path}} >
+                    </Image>
+                    <View style={styles.descContainer}>
+                        <Text style={[styles.title, styles.text]}>{movieData.title}</Text>
+                        <Text numberOfLines={1} style={[styles.genre, styles.text, {fontSize: 10, color: '#C1C1C1'}]}>{genres}</Text>
+                        <Text numberOfLines={1} style={[styles.actor, styles.text, {fontSize: 12, color: '#7E7E7E'}]}>{actors}</Text>
+                    </View>
+                    <ImageBackground
+                        source={require('../../../assets/star.png')}
+                        style={styles.ratingIcon}
+                    >
+                        <Text style={[styles.text, styles.ratingText]}>{movieData.vote_average}</Text>
+                    </ImageBackground>
+                </TouchableOpacity>
+            ) : (
+                <View style={[styles.movieContainer, {
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    overflow: "hidden",
+                }]}>
+                    <Text style={[styles.title, {
+                        height: 90,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }]}>
+                        Loading ...
+                    </Text>
                 </View>
-                <ImageBackground
-                    source={require('../../../assets/star.png')}
-                    style={styles.ratingIcon}
-                >
-                    <Text style={[styles.text, styles.ratingText]}>{movieData.vote_average}</Text>
-                </ImageBackground>
-            </TouchableOpacity>
-            {/*{movieCrew.map(function (item, i) {*/}
-            {/*    return (*/}
-            {/*        <Text>{item.name}</Text>*/}
-            {/*    );*/}
-            {/*})}*/}
-            {/*{movieCrew.map((value) => {*/}
-            {/*    <Text>{value.name}</Text>*/}
-            {/*})}*/}
-            {/*<Text>{movieDataItem.title}</Text>*/}
+            )}
         </View>
     );
 }
@@ -92,7 +100,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff',
-        borderRadius: 16,
+        borderRadius: 8,
         marginVertical: 8
     },
     text: {
@@ -133,7 +141,7 @@ const styles = StyleSheet.create({
     imageIcon: {
         width: 60,
         height: 90,
-        borderRadius: 8,
+        borderRadius: 2,
         padding: 8,
         margin: 16,
         alignContent: 'center'

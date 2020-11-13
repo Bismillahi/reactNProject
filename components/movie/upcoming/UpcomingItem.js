@@ -24,7 +24,6 @@ const UpcomingItem = props => {
                 setTimeout(() => {
                     setMovie(response.data);
                     setGenres(response.data.genres);
-                    setLoadStatus(true);
                 }, 2000);
             })
             .catch(error => console.log(error));
@@ -39,6 +38,7 @@ const UpcomingItem = props => {
         });
 
         setStringGenre(str);
+        setLoadStatus(true);
     });
 
     return (
@@ -58,10 +58,15 @@ const UpcomingItem = props => {
             ) : (
                 <View
                     style={[styles.movieContainer, {
-                        backgroundColor: '#888888'
+                        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                        borderRadius: 8,
+                        overflow: "hidden",
                     }]}
                 >
-                    <Text>Loading ...</Text>
+                    <Text style={{
+                        color: '#ffffff',
+                        fontSize: 16
+                    }}>Loading ...</Text>
                 </View>
             )}
         </View>

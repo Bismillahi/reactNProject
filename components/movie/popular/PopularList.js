@@ -1,22 +1,29 @@
 import React, {useEffect} from 'react';
 import {
     View, Text, StyleSheet,
-    Image, FlatList, TouchableOpacity
+    Image, FlatList, ActivityIndicator
 } from "react-native";
 import PopularItem from "./PopularItem";
 
 const PopularList = props => {
-    const {dataSource} = props
+    const {dataSource, loaded} = props
 
     return (
         <View>
             <Text style={[styles.title, styles.text]}>{"Popular Movie"}</Text>
-            <FlatList
-                data={dataSource}
-                horizontal={false}
-                renderItem={({item, index, separators}) => (
-                    <PopularItem dataId={item.id.toString()}/>
-                )}/>
+            {loaded? (
+                <FlatList
+                    data={dataSource}
+                    horizontal={false}
+                    renderItem={({item, index, separators}) => (
+                        <PopularItem dataId={item.id.toString()}/>
+                    )}/>
+            ) : (
+                <View style={styles.loader}>
+                    <ActivityIndicator size="large" color="#dc681e" />
+                    <Text style={{fontSize: 16, color: 'red'}}>Loading Data...</Text>
+                </View>
+            )}
         </View>
     );
 }
@@ -35,5 +42,10 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 21,
         padding: 8,
+    },
+    loader: {
+        flex:1,
+        justifyContent: "center",
+        alignItems: "center",
     }
 })
