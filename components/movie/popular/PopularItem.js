@@ -97,16 +97,13 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: "Poppins",
-        color: '#00000'
     },
     descContainer: {
         padding: 12,
-        flex: 1,
-        justifyItems: 'left'
+        flex: 1
     },
     title: {
         fontWeight: "bold",
-        color: '#ffffff',
         fontSize: 18
     },
     ratingIcon: {
@@ -118,7 +115,7 @@ const styles = StyleSheet.create({
     ratingText: {
         fontSize: 14,
         color: '#fff',
-        fontWeight: 600,
+        fontWeight: "600",
         marginTop: 8,
         justifyContent: 'center',
         alignContent: 'center',
@@ -127,15 +124,11 @@ const styles = StyleSheet.create({
     },
     actor: {
         color: '#ffffff',
-        ellipsizeMode: "tail",
-        fontSize: 12,
-        numberOfLines: 1
+        fontSize: 12
     },
     genre: {
         color: '#ffffff',
-        ellipsizeMode: "tail",
         fontSize: 12,
-        numberOfLines: 1
     },
     imageIcon: {
         width: 60,

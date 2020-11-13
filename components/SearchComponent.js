@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
         paddingStart:12,
     },
     formField: {
+        fontFamily: "Poppins",
         flex: 1,
         paddingEnd: 12,
         paddingStart:12,

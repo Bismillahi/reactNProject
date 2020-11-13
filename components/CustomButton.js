@@ -15,7 +15,7 @@ export default CustomButton;
 const styles = StyleSheet.create({
     appButtonCont: {
         elevation: 0,
-        backgroundColor: "#DC681E",
+        backgroundColor: '#DC681E',
         borderRadius: 16,
         paddingVertical: 10,
         marginVertical: 8,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
     appButtonText: {
         fontSize: 16,
-        color: "#fff",
+        color: '#fff',
         fontFamily: "Poppins",
         alignSelf: "center"
     }

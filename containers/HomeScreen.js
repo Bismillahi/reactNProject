@@ -100,8 +100,7 @@ const styles = StyleSheet.create({
     },
     headerTitle: {
         fontSize: 24,
-        color: '#ffffff',
-        fontStyle: 'bold'
+        color: '#ffffff'
     },
     imgBanner: {
         height: 100

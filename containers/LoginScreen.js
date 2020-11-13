@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     signupButton: {
         color: '#000000',
         fontSize: 14,
-        fontWeight:'500'
+        fontWeight:"500"
     }
 })

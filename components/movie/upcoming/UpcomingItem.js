@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     },
     genre: {
         color: '#ffffff',
-        ellipsizeMode: "tail",
         fontSize: 12
     }
 })

@@ -56,7 +56,7 @@ class ProfileScreen extends Component {
                             </View>
                         </View>
                         <View style={styles.infoCont}>
-                            <Text style={[styles.text, { fontWeight: 600, fontSize: 36, color: '#fff'}]}>Kwon Yuli</Text>
+                            <Text style={[styles.text, { fontWeight: "600", fontSize: 36, color: '#fff'}]}>Kwon Yuli</Text>
                             <Text style={[styles.text, { fontSize: 16, color: '#00000'}]}>South Korea</Text>
                         </View>
                     </View>
@@ -109,11 +109,10 @@ const styles = StyleSheet.create({
         marginVertical: 16
     },
     detailCont: {
-        flexDirection: 'col',
-        justifyContent: "left"
+        flex: 1
     },
     detailBox: {
-        backgroundColor: "#fff",
+        backgroundColor: '#fff',
         borderRadius: 16,
         alignItems: 'center',
         marginHorizontal: 16,
@@ -122,7 +121,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     icon: {
-        fontSize: "1.5em",
+        fontSize: 24,
         padding: 4,
         marginRight: 4
     }
