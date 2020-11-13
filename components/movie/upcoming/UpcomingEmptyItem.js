@@ -7,7 +7,7 @@ const UpcomingEmptyItem = () => {
     return (
         <View style={styles.movieContainer}>
             <Text
-                style={[styles.title, {color: 'rgba(255, 255, 255, 1)'}]}
+                style={[styles.title, styles.text, {color: 'rgba(255, 255, 255, 1)'}]}
             >
                 Loading ...
             </Text>

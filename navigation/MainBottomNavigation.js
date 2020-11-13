@@ -13,7 +13,7 @@ const MainBottomNavigation = () => {
         <Tab.Navigator
             style={styles.tabBarContainer}
             initialRouteName={'Beranda'}
-            // labelStyle={{fontSize: '48', fontFamily: "Poppins"}}
+            labelStyle={{fontFamily: "Poppins"}}
             tabBarOptions={{
                 activeTintColor: '#dc681e',
                 inactiveTIntColor: ''

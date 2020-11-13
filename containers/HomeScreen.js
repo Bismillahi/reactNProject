@@ -1,5 +1,15 @@
 import React from "react";
-import {View, Text, Image, Button, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity} from "react-native";
+import {
+    View,
+    Text,
+    Image,
+    Button,
+    StyleSheet,
+    ScrollView,
+    SafeAreaView,
+    TouchableOpacity,
+    Dimensions
+} from "react-native";
 import axios from 'axios';
 import ListContainer from '../components/ListContainer';
 import PopularList from "../components/movie/popular/PopularList";
@@ -8,6 +18,8 @@ import FullWidthImage from 'react-native-fullwidth-image';
 
 const API_URL = "https://api.themoviedb.org/3"
 const API_KEY = "c696ae5550ca0ba0e92a7be8d9a60acf"
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 export default class HomeScreen extends React.Component {
 
@@ -107,11 +119,11 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View>
-                {/*<FullWidthImage*/}
-                {/*    style={styles.imgBanner}*/}
-                {/*    source={require('../assets/header1.png')}*/}
-                {/*    resizeMode="cover"*/}
-                {/*/>*/}
+                <Image
+                    style={styles.imgBanner}
+                    source={require('../assets/header1.png')}
+                    resizeMode="cover"
+                />
                 <ScrollView style={styles.container}>
                     <UpcomingList
                         dataSource={this.state.upcomingMovieData}
@@ -130,7 +142,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 24,
+        padding: 16,
     },
     header: {
         backgroundColor: '#DC681E',
@@ -141,6 +153,8 @@ const styles = StyleSheet.create({
         color: '#ffffff'
     },
     imgBanner: {
-        height: 100
+        width: deviceWidth,
+        height: deviceHeight * 0.22,
+        overflow: "hidden"
     }
 })

@@ -43,7 +43,7 @@ const BottomTabBar = ({state, descriptors, navigation}) => {
                         style={{flex: 1}}
                     >
                         <MaterialIcons name={'home'}/>
-                        <Text style={{color: isFocused ? '#DC681E' : '#222'}}>
+                        <Text style={{fontFamily: "Poppins", color: isFocused ? '#DC681E' : '#222'}}>
                             {label}
                         </Text>
                     </TouchableOpacity>

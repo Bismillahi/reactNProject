@@ -56,8 +56,11 @@ class ProfileScreen extends Component {
                             </View>
                         </View>
                         <View style={styles.infoCont}>
-                            <Text style={[styles.text, { fontWeight: "600", fontSize: 36, color: '#fff'}]}>Kwon Yuli</Text>
-                            <Text style={[styles.text, { fontSize: 16, color: '#00000'}]}>South Korea</Text>
+                            <Text style={[styles.text, styles.nameText]}>Kwon Yuli</Text>
+                            <View style={styles.rowCont}>
+                                <MaterialIcons style={styles.icon} name={'explore'}/>
+                                <Text style={[styles.text, { fontSize: 16, color: '#00000'}]}>South Korea</Text>
+                            </View>
                         </View>
                     </View>
                     <FlatList
@@ -77,24 +80,29 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor:'#fff',
     },
-    header: {
-        backgroundColor: '#F7981A',
-        marginBottom: 8
+    rowCont: {
+        flexDirection: "row",
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyItems: 'center'
     },
-    text: {
-        fontFamily: "Poppins",
-        color: '#DC681E'
+    header: {
+        backgroundColor: '#DC681E',
+        marginBottom: 8
     },
     image: {
         flex: 1,
         width: undefined,
         height: undefined
     },
-    titleBar: {
-        flexDirection: 'row',
-        justifyContent: "space-between",
-        marginTop: 24,
-        marginHorizontal: 6
+    text: {
+        fontFamily: "Poppins",
+        color: '#DC681E'
+    },
+    nameText: {
+        fontWeight: "600",
+        fontSize: 28,
+        color: '#fff'
     },
     profileImg: {
         width: 200,

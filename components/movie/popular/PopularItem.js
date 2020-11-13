@@ -80,11 +80,7 @@ const PopularItem = props => {
                     backgroundColor: 'rgba(0, 0, 0, 0.2)',
                     overflow: "hidden",
                 }]}>
-                    <Text style={[styles.title, {
-                        height: 90,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }]}>
+                    <Text style={[styles.title, styles.text, {color: '#C1C1C1'}]}>
                         Loading ...
                     </Text>
                 </View>
@@ -101,7 +97,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#fff',
         borderRadius: 8,
-        marginVertical: 8
+        marginVertical: 8,
+        elevation: 2,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
     },
     text: {
         fontFamily: "Poppins",

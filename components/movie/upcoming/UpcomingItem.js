@@ -4,6 +4,7 @@ import {
     Image, FlatList, TouchableOpacity, ImageBackground
 } from "react-native";
 import axios from 'axios';
+import CustomText from "../../CustomText";
 
 const API_DETAIL_URL = "https://api.themoviedb.org/3/movie/"
 const API_IMAGE_URL = "https://image.tmdb.org/t/p/w500/"
@@ -43,32 +44,17 @@ const UpcomingItem = props => {
 
     return (
         <View>
-            {loaded? (
-                <TouchableOpacity
-                    style={styles.movieContainer}>
-                    <ImageBackground
-                        style={styles.imageBG}
-                        source={{uri: API_IMAGE_URL + movieData.backdrop_path}}>
-                        <View style={styles.descContainer}>
-                            <Text fontSize={24} style={styles.title}>{movieData.title}</Text>
-                            <Text fontSize={12} numberOfLines={1} style={styles.genre}>{genres}</Text>
-                        </View>
-                    </ImageBackground>
-                </TouchableOpacity>
-            ) : (
-                <View
-                    style={[styles.movieContainer, {
-                        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                        borderRadius: 8,
-                        overflow: "hidden",
-                    }]}
-                >
-                    <Text style={{
-                        color: '#ffffff',
-                        fontSize: 16
-                    }}>Loading ...</Text>
-                </View>
-            )}
+            <TouchableOpacity
+                style={styles.movieContainer}>
+                <ImageBackground
+                    style={styles.imageBG}
+                    source={{uri: API_IMAGE_URL + movieData.backdrop_path}}>
+                    <View style={styles.descContainer}>
+                        <Text fontSize={24} style={[styles.title, styles.text]}>{movieData.title}</Text>
+                        <Text fontSize={12} numberOfLines={1} style={[styles.genre, styles.text]}>{genres}</Text>
+                    </View>
+                </ImageBackground>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -79,10 +65,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 155,
-        marginRight: 20,
-    },
-    text: {
-        fontFamily: "Poppins"
+        marginRight: 20
     },
     imageBG: {
         flex: 1,
@@ -98,6 +81,9 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 12,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    text: {
+        fontFamily: "Poppins"
     },
     title: {
         fontWeight: "bold",

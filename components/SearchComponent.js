@@ -23,11 +23,11 @@ const SearchComponent = props => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        width: deviceWidth - 64,
+        width: deviceWidth - 32,
         borderWidth: 1,
         backgroundColor: 'white',
         borderRadius: 20,
-        borderColor: '#888888',
+        borderColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
         paddingEnd: 12,
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         paddingStart:12,
         fontSize: 18,
         height: 50,
+        width: deviceWidth - 32,
         marginRight: 12,
     },
     icon: {

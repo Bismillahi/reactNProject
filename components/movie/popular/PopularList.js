@@ -21,7 +21,7 @@ const PopularList = props => {
             ) : (
                 <View style={styles.loader}>
                     <ActivityIndicator size="large" color="#dc681e" />
-                    <Text style={{fontSize: 16, color: 'red'}}>Loading Data...</Text>
+                    <Text style={styles.textLoader}>Loading Data...</Text>
                 </View>
             )}
         </View>
@@ -47,5 +47,11 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent: "center",
         alignItems: "center",
+        marginTop: 32
+    },
+    textLoader: {
+        fontFamily: "Poppins",
+        fontSize: 16,
+        color: '#dc681e'
     }
 })
