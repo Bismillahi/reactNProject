@@ -24,7 +24,6 @@ const UpcomingItem = props => {
                 setTimeout(() => {
                     setMovie(response.data);
                     setGenres(response.data.genres);
-                    setLoadStatus(true);
                 }, 2000);
             })
             .catch(error => console.log(error));
@@ -39,6 +38,7 @@ const UpcomingItem = props => {
         });
 
         setStringGenre(str);
+        setLoadStatus(true);
     });
 
     return (
@@ -63,7 +63,10 @@ const UpcomingItem = props => {
                         overflow: "hidden",
                     }]}
                 >
-                    <Text style={{color: 'rgba(255, 255, 255, 1)'}}>Loading ...</Text>
+                    <Text style={{
+                        color: '#ffffff',
+                        fontSize: 16
+                    }}>Loading ...</Text>
                 </View>
             )}
         </View>
