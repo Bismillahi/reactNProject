@@ -58,10 +58,12 @@ const UpcomingItem = props => {
             ) : (
                 <View
                     style={[styles.movieContainer, {
-                        backgroundColor: '#888888'
+                        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                        borderRadius: 8,
+                        overflow: "hidden",
                     }]}
                 >
-                    <Text>Loading ...</Text>
+                    <Text style={{color: 'rgba(255, 255, 255, 1)'}}>Loading ...</Text>
                 </View>
             )}
         </View>
