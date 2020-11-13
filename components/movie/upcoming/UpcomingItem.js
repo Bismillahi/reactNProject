@@ -14,6 +14,7 @@ const UpcomingItem = props => {
     const [movieData, setMovie] = useState({});
     const [movieGenres, setGenres] = useState([]);
     const [genres, setStringGenre] = useState("");
+    const [loaded, setLoadStatus] = useState(false);
 
     const axiosGetReq = (id) => {
         axios
@@ -23,6 +24,7 @@ const UpcomingItem = props => {
                 setTimeout(() => {
                     setMovie(response.data);
                     setGenres(response.data.genres);
+                    setLoadStatus(true);
                 }, 2000);
             })
             .catch(error => console.log(error));
@@ -40,17 +42,29 @@ const UpcomingItem = props => {
     });
 
     return (
-        <TouchableOpacity
-            style={styles.movieContainer}>
-            <ImageBackground
-                style={styles.imageBG}
-                source={{uri: API_IMAGE_URL + movieData.backdrop_path}}>
-                <View style={styles.descContainer}>
-                    <Text fontSize={24} style={styles.title}>{movieData.title}</Text>
-                    <Text fontSize={12} numberOfLines={1} style={styles.genre}>{genres}</Text>
+        <View>
+            {loaded? (
+                <TouchableOpacity
+                    style={styles.movieContainer}>
+                    <ImageBackground
+                        style={styles.imageBG}
+                        source={{uri: API_IMAGE_URL + movieData.backdrop_path}}>
+                        <View style={styles.descContainer}>
+                            <Text fontSize={24} style={styles.title}>{movieData.title}</Text>
+                            <Text fontSize={12} numberOfLines={1} style={styles.genre}>{genres}</Text>
+                        </View>
+                    </ImageBackground>
+                </TouchableOpacity>
+            ) : (
+                <View
+                    style={[styles.movieContainer, {
+                        backgroundColor: '#888888'
+                    }]}
+                >
+                    <Text>Loading ...</Text>
                 </View>
-            </ImageBackground>
-        </TouchableOpacity>
+            )}
+        </View>
     );
 }
 
