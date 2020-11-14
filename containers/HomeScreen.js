@@ -125,14 +125,16 @@ export default class HomeScreen extends React.Component {
                     resizeMode="cover"
                 />
                 <ScrollView style={styles.container}>
-                    <UpcomingList
-                        dataSource={this.state.upcomingMovieData}
-                        loaded={this.state.umLoaded}
-                    />
-                    <PopularList
-                        dataSource={this.state.popularMovieData}
-                        loaded={this.state.pmLoaded}
-                    />
+                    <View>
+                        <UpcomingList
+                            dataSource={this.state.upcomingMovieData}
+                            loaded={this.state.umLoaded}
+                        />
+                        <PopularList
+                            dataSource={this.state.popularMovieData}
+                            loaded={this.state.pmLoaded}
+                        />
+                    </View>
                 </ScrollView>
             </View>
         );
